@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.samsung.videorental.Rental.rentStatus;
+
 public class Customer {
     private String name;
 
@@ -47,7 +49,7 @@ public class Customer {
             int eachPoint = 0;
             int daysRented = 0;
 
-            if (each.getStatus() == 1) { // returned Video
+            if (each.getStatus() == rentStatus.RETUREND) { // returned Video
                 long diff = each.getReturnDate()
                         .getTime() - each.getRentDate()
                         .getTime();

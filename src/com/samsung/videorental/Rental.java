@@ -3,14 +3,15 @@ package com.samsung.videorental;
 import java.util.Date;
 
 public class Rental {
+	enum rentStatus { RENTED, RETUREND };
     private Video video;
-    private int status; // 0 for Rented, 1 for Returned
+    private rentStatus status; // 0 for Rented, 1 for Returned
     private Date rentDate;
     private Date returnDate;
 
     public Rental(Video video) {
         this.video = video;
-        status = 0;
+        status = rentStatus.RENTED;
         rentDate = new Date();
     }
 
@@ -22,13 +23,13 @@ public class Rental {
         this.video = video;
     }
 
-    public int getStatus() {
+    public rentStatus getStatus() {
         return status;
     }
 
     public void returnVideo() {
-        if (status == 1) {
-            this.status = 1;
+        if (status == rentStatus.RENTED) {
+            this.status = rentStatus.RETUREND;
             returnDate = new Date();
         }
     }
@@ -52,7 +53,7 @@ public class Rental {
     public int getDaysRentedLimit() {
         int limit = 0;
         int daysRented;
-        if (getStatus() == 1) { // returned Video
+        if (getStatus() == rentStatus.RETUREND) { // returned Video
             long diff = returnDate.getTime() - rentDate.getTime();
             daysRented = (int) (diff / (1000 * 60 * 60 * 24)) + 1;
         } else { // not yet returned
