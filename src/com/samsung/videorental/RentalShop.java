@@ -11,9 +11,7 @@ public class RentalShop {
     private List<Video> videos = new ArrayList<Video>();
 
     RentalShop() {
-
         init();
-
     }
 
     public void clearRental(String customerName) {
