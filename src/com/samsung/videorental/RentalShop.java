@@ -42,24 +42,10 @@ public class RentalShop {
     }
 
     public void returnVideo(String customerName, String videoTitle) {
-
-
         Customer foundCustomer = findCustomer(customerName);
         if (foundCustomer == null) return;
 
-        List<Rental> customerRentals = foundCustomer.getRentals();
-        for (Rental rental : customerRentals) {
-            if (rental.getVideo()
-                    .getTitle()
-                    .equals(videoTitle) && rental.getVideo()
-                    .isRented()) {
-                rental.returnVideo();
-                rental.getVideo()
-                        .setRented(false);
-                break;
-            }
-        }
-
+        foundCustomer.returnVideo(videoTitle);
     }
 
     private void init() {

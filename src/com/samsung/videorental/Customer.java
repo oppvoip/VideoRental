@@ -114,4 +114,20 @@ public class Customer {
                     .getPriceCode());
         }
     }
+
+    public void returnVideo(String videoTitle) {
+
+        for (Rental rental : rentals) {
+            if (rental.getVideo()
+                    .getTitle()
+                    .equals(videoTitle) && rental.getVideo()
+                    .isRented()) {
+                rental.returnVideo();
+                rental.getVideo()
+                        .setRented(false);
+                break;
+            }
+        }
+
+    }
 }
