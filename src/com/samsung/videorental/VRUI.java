@@ -9,17 +9,12 @@ public class VRUI {
     private RentalShop rentalShop = new RentalShop();
     private static Scanner scanner = new Scanner(System.in);
 
-//    private List<Customer> customers = new ArrayList<Customer>();
-//
-//    private List<Video> videos = new ArrayList<Video>();
-
     public static void main(String[] args) {
         VRUI ui = new VRUI();
 
         boolean quit = false;
         while (!quit) {
             int command = ui.showCommand();
-            //Switch Statements
             switch (command) {
                 case 0:
                     quit = true;
@@ -96,14 +91,6 @@ public class VRUI {
         rentalShop.rentVideo(customerName, videoTitle);
 
     }
-
-//    public void register(String object) {
-//        if (object.equals("customer")) {
-//
-//        } else {
-//
-//        }
-//    }
 
     public void registerCustomer() {
         System.out.println("Enter customer name: ");
