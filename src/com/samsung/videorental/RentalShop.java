@@ -23,15 +23,7 @@ public class RentalShop {
         if (foundCustomer == null) {
             System.out.println("No customer found");
         } else {
-            System.out.println("Name: " + foundCustomer.getName() +
-                    "\tRentals: " + foundCustomer.getRentals()
-                    .size());
-            for (Rental rental : foundCustomer.getRentals()) {
-                System.out.print("\tTitle: " + rental.getVideo()
-                        .getTitle() + " ");
-                System.out.print("\tPrice Code: " + rental.getVideo()
-                        .getPriceCode());
-            }
+            foundCustomer.print();
 
             List<Rental> rentals = new ArrayList<Rental>();
             foundCustomer.setRentals(rentals);
@@ -95,7 +87,7 @@ public class RentalShop {
         System.out.println("List of videos");
 
         for (Video video : videos) {
-            System.out.println("Price code: " + video.getPriceCode() + "\tTitle: " + video.getTitle());
+            video.print();
         }
         System.out.println("End of list");
 
@@ -105,15 +97,7 @@ public class RentalShop {
 
         System.out.println("List of customers");
         for (Customer customer : customers) {
-            System.out.println("Name: " + customer.getName() +
-                    "\tRentals: " + customer.getRentals()
-                    .size());
-            for (Rental rental : customer.getRentals()) {
-                System.out.print("\tTitle: " + rental.getVideo()
-                        .getTitle() + " ");
-                System.out.println("\tPrice Code: " + rental.getVideo()
-                        .getPriceCode());
-            }
+            customer.print();
         }
         System.out.println("End of list");
 
