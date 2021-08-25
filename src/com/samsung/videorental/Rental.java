@@ -75,4 +75,57 @@ public class Rental {
         }
         return limit;
     }
+    
+    public int getDaysRented() {
+    	int daysRented = 0;
+    	long diff = 0;
+    	
+    	if (getStatus() == 1) { // returned Video
+            diff = getReturnDate().getTime() - getRentDate().getTime();
+        } else { // not yet returned
+            diff = new Date().getTime() - getRentDate().getTime();
+        }
+    	daysRented = (int) (diff / (1000 * 60 * 60 * 24)) + 1;
+    	
+    	return daysRented;
+    }
+    
+    public double getCharge() {
+    	double charge = 0;
+
+        switch (getVideo().getPriceCode()) {
+            case Video.REGULAR:
+            	charge += 2;
+                if (getDaysRented() > 2)
+                	charge += (getDaysRented() - 2) * 1.5;
+                break;
+            case Video.NEW_RELEASE:
+            	charge = getDaysRented() * 3;
+                break;
+        }
+        
+        return charge;
+    }
+    
+    public int getPoint() {
+    	int point = 0;
+    	
+    	point++;
+
+        if ((getVideo().getPriceCode() == Video.NEW_RELEASE))
+        	point++;
+
+        if (getDaysRented() > getDaysRentedLimit())
+        	point -= Math.min(point, getVideo().getLateReturnPointPenalty());
+        
+        return point;
+    }
+    
+    public String getRentalReport() {
+    	String report = "\t" + getVideo()
+        .getTitle() + "\tDays rented: " + getDaysRented() + "\tCharge: " + getCharge()
+        + "\tPoint: " + getPoint() + "\n";
+    	
+    	return report;
+    }
 }
