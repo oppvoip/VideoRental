@@ -17,15 +17,7 @@ public class RentalShop {
     }
 
     public void clearRental(String customerName) {
-
-        Customer foundCustomer = null;
-        for (Customer customer : customers) {
-            if (customer.getName()
-                    .equals(customerName)) {
-                foundCustomer = customer;
-                break;
-            }
-        }
+        Customer foundCustomer = findCustomer(customerName);
 
         if (foundCustomer == null) {
             System.out.println("No customer found");
@@ -47,16 +39,8 @@ public class RentalShop {
     }
 
     public void returnVideo(String customerName, String videoTitle) {
+        Customer foundCustomer = findCustomer(customerName);;
 
-
-        Customer foundCustomer = null;
-        for (Customer customer : customers) {
-            if (customer.getName()
-                    .equals(customerName)) {
-                foundCustomer = customer;
-                break;
-            }
-        }
         if (foundCustomer == null) return;
 
         List<Rental> customerRentals = foundCustomer.getRentals();
@@ -188,5 +172,17 @@ public class RentalShop {
         Video video = new Video(title, videoType, priceCode, registeredDate);
         videos.add(video);
 
+    }
+    
+    private Customer findCustomer(String customerName) {
+    	Customer foundCustomer = null;
+        for (Customer customer : customers) {
+            if (customer.getName()
+                    .equals(customerName)) {
+                foundCustomer = customer;
+                break;
+            }
+        }
+        return foundCustomer;
     }
 }
