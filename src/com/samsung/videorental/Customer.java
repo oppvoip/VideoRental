@@ -100,4 +100,16 @@ public class Customer {
         }
         return result;
     }
+
+    void print() {
+        System.out.println("Name: " + getName() +
+                "\tRentals: " + getRentals()
+                .size());
+        for (Rental rental : getRentals()) {
+            System.out.print("\tTitle: " + rental.getVideo()
+                    .getTitle() + " ");
+            System.out.println("\tPrice Code: " + rental.getVideo()
+                    .getPriceCode());
+        }
+    }
 }
